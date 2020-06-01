@@ -1,4 +1,10 @@
+import java.util.List;
+
 public class Hand {
 
-    Card[] hand;
+    List<Card> hand;
+
+    public void addCard(Card card) {
+        hand.add(card);
+    }
 }

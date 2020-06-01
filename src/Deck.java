@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
+import java.util.List;
 
 public class Deck {
 
@@ -12,15 +12,25 @@ public class Deck {
 
     }
 
+    public void fill() {
+        for (CardValue value : CardValue.values()) {
+            for (Suit suit : Suit.values()) {
+                deck.add(new Card(value.getText(), suit, value.getValue()));
+            }
+        }
+
+        shuffle();
+    }
+
     public void shuffle() {
         Collections.shuffle(deck);
     }
 
-    public Card[] dealHand(int cards) {
-        Card[] hand = new Card[cards];
+    public List<Card> dealHand(int cards) {
+        List<Card> hand = new ArrayList<>(cards);
 
         for (int i = 0; i < cards; i++) {
-            hand[i] = dealCard();
+            hand.add(dealCard());
         }
 
         return hand;

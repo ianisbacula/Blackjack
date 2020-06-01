@@ -4,13 +4,13 @@ public class Card {
     private int value;
     private Suit suit;
 
-    Card(String text, Suit suit, int value) {
+    public Card(String text, Suit suit, int value) {
         this.text = text;
         this.suit = suit;
         this.value = value;
     }
 
-    Card(String text, Suit suit) {
+    public Card(String text, Suit suit) {
         this(text, suit, 0);
         /// TODO: implement default values
     }
