@@ -1,22 +1,32 @@
-import java.util.Scanner;
+import java.util.List;
 
-public class Player {
+public abstract class Player {
 
     Hand hand;
-    Integer playerID;
-    Scanner sc = new Scanner(System.in);
-
-    Player(Integer playerID) {
-        this.playerID = playerID;
-    }
+    Boolean bust = false;
 
     public void drawCard() {
         Card card = Game.deck.dealCard();
         hand.addCard(card);
+        System.out.println(hand);
     }
 
-    public Action requestAction() {
-        String action = sc.next();
-        return Action.valueOf(action);
+    public void drawHand() {
+        List<Card> newHand = Game.deck.dealHand(2);
+        hand = new Hand(newHand);
+        System.out.println(hand);
     }
+
+    public int getScore() {
+        return hand.getValue();
+    }
+
+    public void bust() {
+        bust = true;
+    }
+
+    public Boolean isBust() {
+        return bust;
+    }
+
 }

@@ -38,4 +38,11 @@ public class Card {
     public void setSuit(Suit suit) {
         this.suit = suit;
     }
+
+    @Override
+    public String toString() {
+        return "{" + text +
+                ", " + suit +
+                '}';
+    }
 }
