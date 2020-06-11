@@ -14,9 +14,22 @@ public class Hand {
 
     public int getValue() {
         int value = 0;
+        int nrAces = 0;
 
         for (Card card : hand) {
+
+            if (card.getText().equals(CardValue.ACE.getText())) {
+                nrAces++;
+            }
+
             value += card.getValue();
+        }
+
+        while (nrAces > 0) {
+            if (value > 21) {
+                value -= 10;
+            }
+            nrAces--;
         }
 
         return value;

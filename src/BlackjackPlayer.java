@@ -13,6 +13,10 @@ public class BlackjackPlayer extends Player{
 
         System.out.println("Choose action:");
         String action = sc.next();
-        return Action.valueOf(action);
+        return Action.getAction(action);
+    }
+
+    public void printHand() {
+        System.out.println("Player:" + hand);
     }
 }

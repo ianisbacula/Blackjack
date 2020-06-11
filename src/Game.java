@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -11,6 +12,8 @@ public class Game {
 
     Game(int nrPlayers) {
         this.nrPlayers = nrPlayers;
+        deck = new Deck();
+        players = new ArrayList<>(nrPlayers);
     }
 
     private void prepareGame() {
@@ -46,6 +49,11 @@ public class Game {
                 break;
             }
 
+            if (dealer.isBust()) {
+                System.out.println("Won");
+                break;
+            }
+
             if (player.getScore() > dealer.getScore()) {
                 System.out.println("Won");
                 break;
@@ -60,7 +68,12 @@ public class Game {
         }
     }
 
-    public void runGame() {
+    public void startGame() {
+        prepareGame();
+        runGame();
+    }
+
+    private void runGame() {
 
         for (int i = 0; i < nrRounds; i++) {
             playRound();

@@ -5,16 +5,18 @@ public abstract class Player {
     Hand hand;
     Boolean bust = false;
 
+    public abstract void printHand();
+
     public void drawCard() {
         Card card = Game.deck.dealCard();
         hand.addCard(card);
-        System.out.println(hand);
+        printHand();
     }
 
     public void drawHand() {
         List<Card> newHand = Game.deck.dealHand(2);
         hand = new Hand(newHand);
-        System.out.println(hand);
+        printHand();
     }
 
     public int getScore() {
