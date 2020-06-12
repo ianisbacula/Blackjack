@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class BlackjackPlayer extends Player{
@@ -16,7 +17,13 @@ public class BlackjackPlayer extends Player{
         return Action.getAction(action);
     }
 
+    public void drawHand() {
+        List<Card> newHand = Game.deck.dealHand(2);
+        hand = new Hand(newHand);
+        printHand();
+    }
+
     public void printHand() {
-        System.out.println("Player:" + hand);
+        System.out.println("Player" + playerID + ": " + hand);
     }
 }

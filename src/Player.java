@@ -13,11 +13,7 @@ public abstract class Player {
         printHand();
     }
 
-    public void drawHand() {
-        List<Card> newHand = Game.deck.dealHand(2);
-        hand = new Hand(newHand);
-        printHand();
-    }
+    public abstract void drawHand();
 
     public int getScore() {
         return hand.getValue();
@@ -29,6 +25,11 @@ public abstract class Player {
 
     public Boolean isBust() {
         return bust;
+    }
+
+    public void reset() {
+        bust = false;
+        hand = null;
     }
 
 }

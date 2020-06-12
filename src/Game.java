@@ -8,7 +8,7 @@ public class Game {
     static Deck deck;
     private List<BlackjackPlayer> players;
     private Dealer dealer;
-    private final int nrRounds = 1;
+    private final int nrRounds = 5;
 
     Game(int nrPlayers) {
         this.nrPlayers = nrPlayers;
@@ -33,39 +33,30 @@ public class Game {
 
     private void playRound() {
 
+        System.out.println();
+        System.out.println("New round");
+        System.out.println();
+
         dealCards();
 
         for (BlackjackPlayer player : players) {
-
             interpretAction(player);
         }
 
         dealer.play();
 
         for (BlackjackPlayer player : players) {
-
-            if (player.isBust()) {
-                System.out.println("Lost");
-                break;
-            }
-
-            if (dealer.isBust()) {
-                System.out.println("Won");
-                break;
-            }
-
-            if (player.getScore() > dealer.getScore()) {
-                System.out.println("Won");
-                break;
-            }
-
-            if (player.getScore() == dealer.getScore()) {
-                System.out.println("Draw");
-                break;
-            }
-
-            System.out.println("Lost");
+            checkState(player);
         }
+
+        clearRound();
+    }
+
+    private void clearRound() {
+        for (BlackjackPlayer player : players) {
+            player.reset();
+        }
+        dealer.reset();
     }
 
     public void startGame() {
@@ -78,6 +69,31 @@ public class Game {
         for (int i = 0; i < nrRounds; i++) {
             playRound();
         }
+    }
+
+    private void checkState(BlackjackPlayer player) {
+
+        if (player.isBust()) {
+            System.out.println("Lost");
+            return;
+        }
+
+        if (dealer.isBust()) {
+            System.out.println("Won");
+            return;
+        }
+
+        if (player.getScore() > dealer.getScore()) {
+            System.out.println("Won");
+            return;
+        }
+
+        if (player.getScore() == dealer.getScore()) {
+            System.out.println("Draw");
+            return;
+        }
+
+        System.out.println("Lost");
     }
 
     private void interpretAction(BlackjackPlayer player) {

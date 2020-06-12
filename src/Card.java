@@ -3,11 +3,13 @@ public class Card {
     private String text;
     private int value;
     private Suit suit;
+    private Boolean hidden;
 
     public Card(String text, Suit suit, int value) {
         this.text = text;
         this.suit = suit;
         this.value = value;
+        hidden = false;
     }
 
     public Card(String text, Suit suit) {
@@ -19,30 +21,31 @@ public class Card {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public int getValue() {
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public Boolean checkHidden() {
+        return hidden;
     }
 
-    public Suit getSuit() {
-        return suit;
+    public void setHidden() {
+        hidden = true;
     }
 
-    public void setSuit(Suit suit) {
-        this.suit = suit;
+    public void setVisible() {
+        hidden = false;
     }
 
     @Override
     public String toString() {
-        return "{" + text +
-                ", " + suit +
-                '}';
+
+        if (hidden) {
+            return "{hidden card}";
+        } else {
+            return "{" + text +
+                    ", " + suit +
+                    '}';
+        }
     }
 }

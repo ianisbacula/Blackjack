@@ -1,6 +1,13 @@
-public class Dealer extends Player{
+import java.util.List;
 
-    Boolean showCard = false;
+public class Dealer extends Player {
+
+    public void drawHand() {
+        List<Card> newHand = Game.deck.dealHand(2);
+        newHand.get(1).setHidden();
+        hand = new Hand(newHand);
+        printHand();
+    }
 
     public void play() {
 
@@ -15,19 +22,12 @@ public class Dealer extends Player{
     }
 
     public void showHiddenCard() {
-        showCard = true;
+        hand.hand.get(1).setVisible();
         printHand();
     }
 
     public void printHand() {
-
-        if (showCard) {
-            System.out.println("Dealer:" + hand);
-        } else {
-            //improv
-            //TODO add hidden attribute for card
-            System.out.println("Dealer:" + hand.hand.get(0) + ", {hidden card}");
-        }
+        System.out.println("Dealer:" + hand);
     }
 
 }
